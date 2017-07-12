@@ -1,6 +1,6 @@
 body {
   /*background-color: black;*/
-  font: 14px Helvetica;
+  font: 14px Monospace;
 }
 
 a {
@@ -8,7 +8,6 @@ a {
 }
 
 .hexagon {
-  color:white;
   z-index: 1;
   position: relative;
   width: 150px; 
@@ -49,11 +48,12 @@ a {
 }
 
 .hex-text{
-  font-weight:800;
+  color: #b99400;
+  font-weight:200;
   font-size: 16pt;
   display: none;
   padding-top: 25px;
-  padding-left:10px;
+  margin-left:165px;
 }
 
 .l {
