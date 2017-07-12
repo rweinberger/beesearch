@@ -1,5 +1,6 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*background-color: black;*/
+  font: 14px Helvetica;
 }
 
 a {
@@ -7,10 +8,12 @@ a {
 }
 
 .hexagon {
+  color:white;
   z-index: 1;
   position: relative;
   width: 150px; 
   height: 86.60px;
+  opacity: 0.7;
   background-color: #f9d400;
   margin: 55px 0
 }
@@ -36,13 +39,21 @@ a {
 }
 
 .hexagon:hover {
-  opacity: .5;
+  /*opacity: .5;*/
   cursor: pointer
 }
 
 #hexagons {
   width: 150px;
   margin:auto;
+}
+
+.hex-text{
+  font-weight:800;
+  font-size: 16pt;
+  display: none;
+  padding-top: 25px;
+  padding-left:10px;
 }
 
 .l {
@@ -61,3 +72,9 @@ a {
   width:70px;
   margin:auto;
 }
+
+.modal-dialog {
+  width: 750px;
+  margin-top: 100px
+}
+
