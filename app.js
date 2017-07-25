@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var sse = sse = require('./sse')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -15,6 +16,33 @@ app.set('views', path.join(__dirname, 'views'));
 var exphbs = require('express-handlebars');
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
+
+// sse
+var connections = []
+  , nums = {mostRecent: 0, visible: []}
+
+app.use(sse)
+
+app.get('/push', function(req, res) {
+  num = req.query.num;
+  console.log('NUMBER IS '+num);
+  nums.mostRecent = num;
+  nums.visible.push(num);
+  if(nums.visible.length > 10){
+    nums.visible.shift();
+  };
+  connections[0].sseSend(nums);
+  // for(var i = 0; i < connections.length; i++) {
+  //   connections[i].sseSend(nums)
+  // }
+  res.sendStatus(200)
+})
+
+app.get('/stream', function(req, res) {
+  res.sseSetup()
+  res.sseSend(nums)
+  connections.push(res)
+})
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

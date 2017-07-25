@@ -17,4 +17,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { sensors: sensors });
 });
 
+router.get('/result', function(req, res, next) {
+  res.render('result');
+});
+
+router.get('/pusher', function(req, res, next) {
+  res.render('push');
+});
+
 module.exports = router;
