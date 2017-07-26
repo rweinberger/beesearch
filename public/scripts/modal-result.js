@@ -71,7 +71,6 @@ if (!!window.EventSource) {
 
 var updateChart = function (data) {
   s = data.toUpdate;
-  console.log('toUpdate: '+s);
   if(s != null) {
     i = sensorTypes.indexOf(s);
     console.log('index is '+i);
@@ -81,16 +80,8 @@ var updateChart = function (data) {
       x: xVals[i],
       y: y
     });
-    console.log('x: '+xVals[i]+', y: '+y);
     xVals[i]++;
     toRender = charts[i];
-    // console.log(toRender);
     toRender.render();
   };
 };
-
-// // generates first set of dataPoints
-// updateChart(dataLength); 
-
-// // update chart after specified time. 
-// setInterval(function(){updateChart()}, updateInterval); 

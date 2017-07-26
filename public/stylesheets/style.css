@@ -1,5 +1,5 @@
 body {
-  /*background-color: black;*/
+  background-color: #342e1f;
   font: 14px Monospace;
 }
 
@@ -12,8 +12,8 @@ a {
   position: relative;
   width: 150px; 
   height: 86.60px;
-  opacity: 0.7;
-  background-color: #f9d400;
+  opacity: 1;
+  background-color: #f9c700;
   margin: 55px 0
 }
 
@@ -28,13 +28,13 @@ a {
 
 .hexagon:before {
   bottom: 100%;
-  border-bottom: 43.30px solid #f9d400;
+  border-bottom: 43.30px solid #f9c700;
 }
 
 .hexagon:after {
   top: 100%;
   width: 0;
-  border-top: 43.30px solid #f9d400;
+  border-top: 43.30px solid #f9c700;
 }
 
 .hexagon:hover {
@@ -45,23 +45,45 @@ a {
 #hexagons {
   width: 150px;
   margin:auto;
+  margin-top: 170px;
 }
 
-.hex-text{
-  color: #b99400;
+#hex-text{
+  position: absolute;
+  text-align: center;
+  width: 150px;
+  color: #fbd46b;
   font-weight:200;
   font-size: 16pt;
-  display: none;
-  padding-top: 25px;
-  margin-left:165px;
+  top: 335px;
+  /*display:none;*/
 }
 
-.l {
-  margin-left:-39px;
+.one {
+  margin-left:-81px;
 }
 
-.r{
-  margin-left:39px;
+.two{
+  margin-left:81px;
+  margin-top:-141px;
+}
+
+.three{
+  margin-left:-163px;
+}
+
+.four{
+  margin-left:163px;
+  margin-top:-143px
+}
+
+.five{
+  margin-left: -81px;
+}
+
+.six{
+  margin-left:81px;
+  margin-top: -141px
 }
 
 .hex-img{

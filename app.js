@@ -17,22 +17,13 @@ var exphbs = require('express-handlebars');
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-// sse
-// var connections = {
-//   "temp": {r: null, data: []},
-//   "hum": {r: null, data: []},
-//   "wt": {r: null, data: []},
-//   "rad": {r: null, data: []},
-//   "bee": {r: null, data: []}
-// };
-
 var connections = [];
 var sensors = {
-  temp: [0],
-  hum: [0],
-  wt: [0],
-  rad: [0],
-  bee: [0],
+  temp: [],
+  hum: [],
+  wt: [],
+  rad: [],
+  bee: [],
   toUpdate: null,
 };
 
@@ -41,7 +32,6 @@ app.use(sse);
 app.get('/push', function(req, res) {
   num = req.query.num;
   sensor = req.query.sensor;
-  console.log('value '+num+' for sensor '+sensor);
   sensors[sensor].push(num);
   sensors.toUpdate = sensor;
   if(sensors[sensor].length > 10){
@@ -58,27 +48,6 @@ app.get('/stream', function(req, res) {
   res.sseSend(sensors)
   connections.push(res)
 });
-
-// app.get('/temp', function(req, res) {
-//   res.sseSetup();
-//   connections.temp.r = res;
-// })
-// app.get('/hum', function(req, res) {
-//   res.sseSetup();
-//   connections.hum.r = res;
-// })
-// app.get('/wt', function(req, res) {
-//   res.sseSetup();
-//   connections.wt.r = res;
-// })
-// app.get('/rad', function(req, res) {
-//   res.sseSetup();
-//   connections.rad.r = res;
-// })
-// app.get('/bee', function(req, res) {
-//   res.sseSetup();
-//   connections.bee.r = res;
-// })
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

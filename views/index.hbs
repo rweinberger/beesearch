@@ -5,13 +5,17 @@
 
 <body>
   <div id='hexagons'>
-  {{#each sensors}}
-    <div id='hex{{id}}' class='hexagon {{class}}' data-toggle="modal" data-target="#modal{{id}}">
-      <img id='img{{id}}' class='hex-img' src='{{img}}'/>
-      <p id='text{{id}}' class='hex-text'>{{title}}</p>
-    </div>
-    {{>modal-stream}}
-  {{/each}}
+    <div id='hex-text'></div>
+    {{#each sensors}}
+      <div id='hex{{id}}' class='hexagon {{class}}' data-toggle="modal" data-target="#modal{{id}}">
+        <img id='img{{id}}' class='hex-img' src='{{img}}'/>
+        <!-- <p id='text{{id}}' class='hex-text'>{{title}}</p> -->
+      </div>
+      {{>modal-stream}}
+    {{/each}}
+    <a href='https://github.com/rweinberger/beesearch' target='_blank'>
+      <div id='hex5' class='hexagon six'><img class='hex-img' src='/images/github.png'/></div>
+    </a>
   </div>
 
 </body>

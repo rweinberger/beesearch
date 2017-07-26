@@ -4,11 +4,11 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   sensors = [
-    {title:'Temperature', img: 'thermometer2.png', class:'l', sensor:'temp'},
-    {title:'Humidity', img:'humidity2.png', class:'r', sensor:'hum'},
-    {title:'Weight', img:'weight-balance2.png', class:'l', sensor:'wt'},
-    {title:'Radiation', img:'wifi-signal-waves2.png', class:'r', sensor:'rad'},
-    {title:'Bee Counter', img:'bee2.png', class:'l', sensor:'bee'}
+    {title:'Temperature', img: 'thermometer.png', class:'one', sensor:'temp'},
+    {title:'Humidity', img:'humidity.png', class:'two', sensor:'hum'},
+    {title:'Weight', img:'weight-balance.png', class:'three', sensor:'wt'},
+    {title:'Radiation', img:'wifi-signal-waves.png', class:'four', sensor:'rad'},
+    {title:'Bee Counter', img:'bee.png', class:'five', sensor:'bee'}
   ]
   for (i=0; i<5; i++) {
     sensors[i].img = '/images/'+sensors[i].img
