@@ -1,48 +1,29 @@
-var sensorTypes = ['temp', 'hum', 'wt', 'rad', 'bee'];
+var sensorTypes = ['temp', 'hum', 'wt', 'bee'];
 var dataTemp = [],
   dataHum = [],
   dataWt = [],
-  dataRad = [],
   dataBee = []
-var sensorData = [dataTemp, dataHum, dataWt, dataRad, dataBee];
-var xVals = [0,0,0,0,0]
+var sensorData = [dataTemp, dataHum, dataWt, dataBee];
+var xVals = [0,0,0,0]
 
-var chartTemp = new CanvasJS.Chart("charttemp",{    
-  data: [{
-    type: "line",
-    dataPoints: dataTemp 
-  }]
-});
+var charts = [];
 
-var chartHum = new CanvasJS.Chart("charthum",{    
-  data: [{
-    type: "line",
-    dataPoints: dataHum 
-  }]
-});
-
-var chartWt = new CanvasJS.Chart("chartwt",{    
-  data: [{
-    type: "line",
-    dataPoints: dataWt 
-  }]
-});
-
-var chartRad = new CanvasJS.Chart("chartrad",{    
-  data: [{
-    type: "line",
-    dataPoints: dataRad 
-  }]
-});
-
-var chartBee = new CanvasJS.Chart("chartbee",{    
-  data: [{
-    type: "line",
-    dataPoints: dataBee 
-  }]
-});
-
-var charts = [chartTemp, chartHum, chartWt, chartRad, chartBee];
+for(var i=0; i<4; i++){
+  c = new CanvasJS.Chart("chart"+sensorTypes[i],{    
+    backgroundColor: "#8b8b8b",
+    axisX: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black"},
+    axisY: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black"},
+    toolTip:{backgroundColor: "#8b8b8b"},
+    data: [{
+      type: "line",
+      lineColor: '#f9c700',
+      color:'#f9c700',
+      markerSize: 10,
+      dataPoints: sensorData[i]
+    }]
+  });
+  charts.push(c)
+}
 
 if (!!window.EventSource) {
   var source = new EventSource('/stream');
@@ -52,16 +33,16 @@ if (!!window.EventSource) {
   }, false)
 
   source.addEventListener('open', function(e) {
-    $(".state").text("Connected")
+    $(".state").text("(Connected)")
   }, false)
 
   source.addEventListener('error', function(e) {
     console.log(e);
     if (e.target.readyState == EventSource.CLOSED) {
-      $(".state").text("Disconnected")
+      $(".state").text("(Disconnected)")
     }
     else if (e.target.readyState == EventSource.CONNECTING) {
-      $(".state").text("Connecting...")
+      $(".state").text("(Connecting...)")
     }
   }, false)
 } else {
@@ -73,15 +54,16 @@ var updateChart = function (data) {
   s = data.toUpdate;
   if(s != null) {
     i = sensorTypes.indexOf(s);
-    console.log('index is '+i);
     y = parseInt(data[s][data[s].length - 1]);
     chart = sensorData[i];
     chart.push({
       x: xVals[i],
       y: y
     });
+    if (chart.length > 10) {
+      chart.shift()
+    };
     xVals[i]++;
-    toRender = charts[i];
-    toRender.render();
+    charts[i].render();
   };
 };

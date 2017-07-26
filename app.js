@@ -22,7 +22,6 @@ var sensors = {
   temp: [],
   hum: [],
   wt: [],
-  rad: [],
   bee: [],
   toUpdate: null,
 };
@@ -34,9 +33,9 @@ app.get('/push', function(req, res) {
   sensor = req.query.sensor;
   sensors[sensor].push(num);
   sensors.toUpdate = sensor;
-  if(sensors[sensor].length > 10){
-    sensors[sensor].shift();
-  };
+  // if(sensors[sensor].length > 10){
+  //   sensors[sensor].shift();
+  // };
   for(var i = 0; i < connections.length; i++) {
     connections[i].sseSend(sensors)
   }

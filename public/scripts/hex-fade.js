@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var fadeTime = 200;
-  var hexes = ['Temperature', 'Humidity', 'Weight', 'Radiation', 'Bee Counter', 'GitHub'];
+  var hexes = ['temperature', 'humidity', 'weight', 'bee counter', 'github', 'about'];
   $('.hexagon').hover(function() {
     id = this.id.substring(3);
     text = hexes[parseInt(id)];
