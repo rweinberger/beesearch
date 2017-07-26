@@ -1,33 +1,67 @@
-var xVal = 0;
-var yVal = 100;
-var dps = []; // dataPoints
-var chart = new CanvasJS.Chart("chartContainer",{    
+var sensorTypes = ['temp', 'hum', 'wt', 'rad', 'bee'];
+var dataTemp = [],
+  dataHum = [],
+  dataWt = [],
+  dataRad = [],
+  dataBee = []
+var sensorData = [dataTemp, dataHum, dataWt, dataRad, dataBee];
+var xVals = [0,0,0,0,0]
+
+var chartTemp = new CanvasJS.Chart("charttemp",{    
   data: [{
     type: "line",
-    dataPoints: dps 
+    dataPoints: dataTemp 
   }]
 });
 
+var chartHum = new CanvasJS.Chart("charthum",{    
+  data: [{
+    type: "line",
+    dataPoints: dataHum 
+  }]
+});
+
+var chartWt = new CanvasJS.Chart("chartwt",{    
+  data: [{
+    type: "line",
+    dataPoints: dataWt 
+  }]
+});
+
+var chartRad = new CanvasJS.Chart("chartrad",{    
+  data: [{
+    type: "line",
+    dataPoints: dataRad 
+  }]
+});
+
+var chartBee = new CanvasJS.Chart("chartbee",{    
+  data: [{
+    type: "line",
+    dataPoints: dataBee 
+  }]
+});
+
+var charts = [chartTemp, chartHum, chartWt, chartRad, chartBee];
+
 if (!!window.EventSource) {
-  var source = new EventSource('/stream')
+  var source = new EventSource('/stream');
   source.addEventListener('message', function(e) {
-    nums = JSON.parse(e.data);
-    point = nums.visible[nums.visible.length-1];
-    console.log('point '+point);
-    $("#nums").text(nums.visible);
-    updateChart(point);
+    newData = JSON.parse(e.data);
+    updateChart(newData);
   }, false)
 
   source.addEventListener('open', function(e) {
-    $("#state").text("Connected")
+    $(".state").text("Connected")
   }, false)
 
   source.addEventListener('error', function(e) {
+    console.log(e);
     if (e.target.readyState == EventSource.CLOSED) {
-      $("#state").text("Disconnected")
+      $(".state").text("Disconnected")
     }
     else if (e.target.readyState == EventSource.CONNECTING) {
-      $("#state").text("Connecting...")
+      $(".state").text("Connecting...")
     }
   }, false)
 } else {
@@ -35,20 +69,24 @@ if (!!window.EventSource) {
 }
 
 
-var updateChart = function (newPoint) {
-  // console.log('updating chart');
-  dps.push({
-    x: xVal,
-    y: parseInt(newPoint)
-  });
-  xVal++;
-  if (dps.length > 10){
-    dps.shift();
+var updateChart = function (data) {
+  s = data.toUpdate;
+  console.log('toUpdate: '+s);
+  if(s != null) {
+    i = sensorTypes.indexOf(s);
+    console.log('index is '+i);
+    y = parseInt(data[s][data[s].length - 1]);
+    chart = sensorData[i];
+    chart.push({
+      x: xVals[i],
+      y: y
+    });
+    console.log('x: '+xVals[i]+', y: '+y);
+    xVals[i]++;
+    toRender = charts[i];
+    // console.log(toRender);
+    toRender.render();
   };
-  for (var i=0; i<dps.length; i++) {
-    console.log('x: '+dps[i].x, 'y: '+dps[i].y)
-  };
-  chart.render(); 
 };
 
 // // generates first set of dataPoints

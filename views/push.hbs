@@ -2,7 +2,15 @@
 <!-- <div id='push'>push</div>
 <div id='pull'>pull</div> -->
 
-<textarea id='num' rows='1' cols='10' placeholder="number"></textarea>
-<br><button id='push'>submit</button>
+<select id='sensors'>
+  <option value="temp">temperature</option>
+  <option value="hum">humidity</option>
+  <option value="wt">weight</option>
+  <option value="rad">radiation</option>
+  <option value="bee">bee counter</option>
+</select>
+
+<input type='number' id='num'></input>
+<br><button id='push' type='submit'>submit</button>
 
 <script src="/scripts/push.js"></script>
