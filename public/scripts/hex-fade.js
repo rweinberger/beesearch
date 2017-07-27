@@ -7,9 +7,16 @@ $(document).ready(function(){
     $('#hex'+id).animate({opacity:0.5}, fadeTime);
     $('#hex-text').text(text);
     $('#hex-text').show()
+    $('.smallHex').css('z-index', -1)
   }, function() {
     id = this.id.substring(3);
     $('#hex'+id).animate({opacity:1}, fadeTime);
     $('#hex-text').hide();
+    $('.smallHex').css('z-index', 1)
   })
+  $('.smallHex').hover(function() {
+    $('.smallHex').animate({opacity:0.5}, fadeTime);
+  }, function() {
+    $('.smallHex').animate({opacity:1}, fadeTime);
+  });
 });

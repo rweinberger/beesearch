@@ -54,8 +54,10 @@ var updateChart = function (data) {
   s = data.toUpdate;
   if(s != null) {
     if (s != 'settings') {
-      console.log(s+' avg (last 50 dps): '+data[s].avg);
       i = sensorTypes.indexOf(s);
+      var avg = data[s].avg;
+      console.log(s+' avg (last 50 dps): '+avg);
+      $('#avg'+i).text(avg)
       y = data[s].dps[data[s].dps.length - 1];
       chart = sensorData[i];
       chart.push({
