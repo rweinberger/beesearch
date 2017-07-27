@@ -53,8 +53,9 @@ if (!!window.EventSource) {
 var updateChart = function (data) {
   s = data.toUpdate;
   if(s != null) {
+    console.log('running avg (last 50 dps): '+data[s].avg);
     i = sensorTypes.indexOf(s);
-    y = parseInt(data[s][data[s].length - 1]);
+    y = data[s].dps[data[s].dps.length - 1];
     chart = sensorData[i];
     chart.push({
       x: xVals[i],
