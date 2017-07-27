@@ -68,9 +68,9 @@ var updateChart = function (data) {
       xVals[i]++;
       charts[i].render();
     } else {
-      $('#tempPref').text(data.tPref);
-      $('#humPref').text(data.hPref);
-      $('#wtPref').text(data.wPref);
+      $('#tempPref').text(data.tPref+' \u00b0C');
+      $('#humPref').text(data.hPref+' %');
+      $('#wtPref').text(data.wPref+' kg');
       $('#beePref').text(data.bPref);
     }
   };
