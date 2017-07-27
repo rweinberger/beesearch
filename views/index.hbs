@@ -12,9 +12,10 @@
       </div>
       {{>modal-stream}}
     {{/each}}
-    <a href='https://github.com/rweinberger/beesearch' target='_blank'>
-      <div id='hex4' class='hexagon four'><span></span><img class='hex-img' src='/images/github.png'/></div>
-    </a>
+    <div id='hex4' class='hexagon four' data-toggle="modal" data-target="#modalSettings">
+      <span></span><img class='hex-img' src='/images/settings.png'/>
+    </div>
+    {{>modalSettings}}
     <div id='hex5' class='hexagon five' data-toggle="modal" data-target="#modalAbout">
       <span></span><img class='hex-img' src='/images/help.png'/>
     </div>
@@ -24,4 +25,5 @@
 </body>
 <script src="/scripts/hex-fade.js"></script>
 <script src='/scripts/modal-result.js'></script>
+<script src='/scripts/setSettings.js'></script>
 </html>

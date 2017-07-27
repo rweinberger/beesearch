@@ -24,6 +24,10 @@ var sensors = {
   wt: {dps:[], avg: 0},
   bee: {dps:[], avg: 0},
   toUpdate: null,
+  tPref: 0,
+  hPref: 0,
+  wPref: 0,
+  bPref: 0
 };
 
 app.use(sse);
@@ -32,14 +36,32 @@ function add(a, b) {
   return a + b;
 }
 
+app.get('/set', function(req,res) {
+  var tp = parseInt(req.query.temp);
+  var hp = parseInt(req.query.hum);
+  var wp = parseInt(req.query.wt);
+  var bp = parseInt(req.query.bee);
+  var invalid = isNaN(tp) || isNaN(hp) || isNaN(wp) || isNaN(bp)
+  if (!invalid) {
+    console.log('valid settings were submitted');
+    sensors.tPref = tp;
+    sensors.hPref = hp;
+    sensors.wPref = wp;
+    sensors.bPref = bp;
+    sensors.toUpdate = 'settings';
+    for(var i = 0; i < connections.length; i++) {
+      connections[i].sseSend(sensors)
+    }
+  } else {
+    console.log('invalid settings submitted')
+  }
+});
+
 app.get('/push', function(req, res) {
   var num = parseInt(req.query.num);
   var sensor = req.query.sensor;
-  console.log(num);
-  b = isNaN(num);
-  // console.log('hello '+isNaN(num));
-  if (b == false) {
-    console.log(num+' is a number');
+  var b = isNaN(num);
+  if (!b) {
     sensors[sensor].dps.push(parseInt(num));
     sensors.toUpdate = sensor;
     if(sensors[sensor].dps.length > 50){

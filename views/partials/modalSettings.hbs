@@ -1,0 +1,32 @@
+<div class="modal fade" id="modalSettings" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="settings">Settings</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Current preferences set at: </p>
+        <b class='numPref'>Temperature</b>&nbsp;<p id='tempPref' class='numPref'>--</p><br>
+        <b class='numPref'>Humidity</b>&nbsp;<p id='humPref' class='numPref'>--</p><br>
+        <b class='numPref'>Weight</b>&nbsp;<p id='wtPref' class='numPref'>--</p><br>
+        <b class='numPref'>Number of Bees</b>&nbsp;<p id='beePref' class='numPref'>--</p><br>
+        <hr>
+        <p>Enter your new target parameter values here.</p>
+        <b>Temperature</b>
+        <input type='number' id='tempSet' class='setInput'></input><br>
+        <b>Humidity</b>
+        <input type='number' id='humSet' class='setInput'></input><br>
+        <b>Weight</b>
+        <input type='number' id='wtSet' class='setInput'></input><br>
+        <b>Number of Bees</b>
+        <input type='number' id='beeSet' class='setInput'></input><br>
+        <br><button id='setPrefs'>Save</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

@@ -53,18 +53,25 @@ if (!!window.EventSource) {
 var updateChart = function (data) {
   s = data.toUpdate;
   if(s != null) {
-    console.log('running avg (last 50 dps): '+data[s].avg);
-    i = sensorTypes.indexOf(s);
-    y = data[s].dps[data[s].dps.length - 1];
-    chart = sensorData[i];
-    chart.push({
-      x: xVals[i],
-      y: y
-    });
-    if (chart.length > 10) {
-      chart.shift()
-    };
-    xVals[i]++;
-    charts[i].render();
+    if (s != 'settings') {
+      console.log(s+' avg (last 50 dps): '+data[s].avg);
+      i = sensorTypes.indexOf(s);
+      y = data[s].dps[data[s].dps.length - 1];
+      chart = sensorData[i];
+      chart.push({
+        x: xVals[i],
+        y: y
+      });
+      if (chart.length > 10) {
+        chart.shift()
+      };
+      xVals[i]++;
+      charts[i].render();
+    } else {
+      $('#tempPref').text(data.tPref);
+      $('#humPref').text(data.hPref);
+      $('#wtPref').text(data.wPref);
+      $('#beePref').text(data.bPref);
+    }
   };
 };
