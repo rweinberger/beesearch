@@ -2,17 +2,17 @@ var sensorTypes = ['temp', 'hum', 'wt', 'bee'];
 var dataTemp = [],
   dataHum = [],
   dataWt = [],
-  dataBee = []
+  dataBee = [];
 var sensorData = [dataTemp, dataHum, dataWt, dataBee];
-var xVals = [0,0,0,0]
+var xVals = [0,0,0,0];
 
 var charts = [];
 
 for(var i=0; i<4; i++){
   c = new CanvasJS.Chart("chart"+sensorTypes[i],{    
     backgroundColor: "#8b8b8b",
-    axisX: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black"},
-    axisY: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black"},
+    axisX: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black", labelFontFamily: 'verdana'},
+    axisY: {lineColor:"black", tickColor:"black", tickThickness: 1, lineThickness: 1, labelFontColor:"black", labelFontFamily: 'verdana'},
     toolTip:{backgroundColor: "#8b8b8b"},
     data: [{
       type: "line",
@@ -23,18 +23,18 @@ for(var i=0; i<4; i++){
     }]
   });
   charts.push(c)
-}
+};
 
 if (!!window.EventSource) {
   var source = new EventSource('/stream');
   source.addEventListener('message', function(e) {
     newData = JSON.parse(e.data);
     updateChart(newData);
-  }, false)
+  }, false);
 
   source.addEventListener('open', function(e) {
     $(".state").text("(Connected)")
-  }, false)
+  }, false);
 
   source.addEventListener('error', function(e) {
     console.log(e);
@@ -47,7 +47,7 @@ if (!!window.EventSource) {
   }, false)
 } else {
   console.log("Your browser doesn't support SSE")
-}
+};
 
 
 var updateChart = function (data) {

@@ -124,9 +124,10 @@ a {
   border:none;
 }
 
-.modal-title{
+.modal-title, .state{
   display: inline-block;
 }
-.state{
-  display: inline-block;
+
+.close{
+  font-size: 26pt
 }

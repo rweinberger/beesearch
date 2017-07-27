@@ -15,7 +15,10 @@
     <a href='https://github.com/rweinberger/beesearch' target='_blank'>
       <div id='hex4' class='hexagon four'><span></span><img class='hex-img' src='/images/github.png'/></div>
     </a>
-    <div id='hex5' class='hexagon five'><span></span><img class='hex-img' src='/images/help.png'/></div>
+    <div id='hex5' class='hexagon five' data-toggle="modal" data-target="#modalAbout">
+      <span></span><img class='hex-img' src='/images/help.png'/>
+    </div>
+    {{>modalAbout}}
   </div>
 
 </body>
