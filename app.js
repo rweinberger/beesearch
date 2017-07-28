@@ -64,7 +64,7 @@ app.get('/push', function(req, res) {
   if (!b) {
     sensors[sensor].dps.push(parseInt(num));
     sensors.toUpdate = sensor;
-    if(sensors[sensor].dps.length > 50){
+    if(sensors[sensor].dps.length > 10){
       sensors[sensor].dps.shift();
     };
     var sum = sensors[sensor].dps.reduce(add, 0);

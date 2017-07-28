@@ -215,3 +215,9 @@ hr{
 .smallHex:hover {
   cursor:pointer;
 }
+
+#healthIndicator{
+  width: 100px;
+  height: 100px;
+  background-color: black
+}
