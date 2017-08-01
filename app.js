@@ -85,6 +85,10 @@ app.get('/stream', function(req, res) {
   connections.push(res)
 });
 
+app.get('/test', function(req, res) {
+  res.send('heyyyy');
+})
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
