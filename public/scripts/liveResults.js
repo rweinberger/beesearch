@@ -71,7 +71,6 @@ var updateCharts = function (data) {
   for(var i=0; i<3; i++) {
     var s = sensorTypes[i];
     var avg = data[s].avg;
-    console.log(s+' avg (last 50 dps): '+avg);
     $('.avg'+i).text(avg+units[i]);
     y = data[s].dps[data[s].dps.length - 1];
     chart = sensorData[i];

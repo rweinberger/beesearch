@@ -63,7 +63,6 @@ app.get('/push', function(req, res) {
   var hum = parseFloat(req.query.hum);
   var wt = parseFloat(req.query.wt);
   console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + wt);
-  // var sensor = req.query.sensor;
   var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
   if (!b) {
     sensors.temp.dps.push(temp);
@@ -79,7 +78,6 @@ app.get('/push', function(req, res) {
       var avg = sum / sensors[s].dps.length;
       sensors[s].avg = avg;
     };
-    console.log(sensors);
     for(var i = 0; i < connections.length; i++) {
       connections[i].sseSend(sensors)
     }
