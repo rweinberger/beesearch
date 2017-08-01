@@ -1,18 +1,19 @@
-function push(num, sensor) {
-  $.get("/push?num=" + num +"&sensor="+sensor, function() {
+function push(temp, hum, wt) {
+  $.get("/push?temp=" + temp + "&hum=" + hum +"&wt=" + wt, function() {
   })
 }
 
-$('#num').keypress(function(e){
+$('.num').keypress(function(e){
   if(e.keyCode==13)
   $('#push').click();
 });
 
 
 $("#push").on("click", function() {
-  var n = $('#num').val();
-  var s = $('#sensors').val();
+  var t = $('#tempInput').val();
+  var h = $('#humInput').val();
+  var w = $('#wtInput').val();
   // console.log(n, s);
-  push(n, s);
-  $('#num').val('')
+  push(t,h,w);
+  $('.num').val('')
 })
