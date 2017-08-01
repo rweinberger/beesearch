@@ -59,10 +59,10 @@ app.get('/set', function(req,res) {
 });
 
 app.get('/push', function(req, res) {
-  console.log(req);
   var temp = parseFloat(req.query.temp);
   var hum = parseFloat(req.query.hum);
   var wt = parseFloat(req.query.wt);
+  console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + wt);
   // var sensor = req.query.sensor;
   var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
   if (!b) {
@@ -70,15 +70,16 @@ app.get('/push', function(req, res) {
     sensors.hum.dps.push(hum);
     sensors.wt.dps.push(wt);
     sensors.toUpdate = 'sensors';
-    for(var i=0; i<3; i++) {
+    for (var i=0; i<3; i++) {
       var s = types[i];
-      if(sensors[sensor].dps.length > 10){
-        sensors[sensor].dps.shift();
+      if(sensors[s].dps.length > 10){
+        sensors[s].dps.shift();
       };
-      var sum = sensors[sensor].dps.reduce(add, 0);
-      var avg = sum / sensors[sensor].dps.length;
-      sensors[sensor].avg = avg;
-    }
+      var sum = sensors[s].dps.reduce(add, 0);
+      var avg = sum / sensors[s].dps.length;
+      sensors[s].avg = avg;
+    };
+    console.log(sensors);
     for(var i = 0; i < connections.length; i++) {
       connections[i].sseSend(sensors)
     }
