@@ -79,7 +79,7 @@ var updateChart = function (data, s) {
       x: xVals[i],
       y: y
     });
-    if (chart.length > 10) {
+    if (chart.length > 20) {
       chart.shift()
     };
     xVals[i]++;
