@@ -87,7 +87,8 @@ app.get('/stream', function(req, res) {
 
 app.post('/test', function(req, res) {
   console.log('HEADERS-HELLO: '+req.headers.hello);
-  console.log(req);
+  console.log('req body: '+req.body);
+  console.log('req query: '+req.query);
   console.log('REQ BODY-TITLE: '+req.body.title);
   console.log('REQ BODY-HUMIDITY: '+req.body.humidity);
   // console.log(req)
