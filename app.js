@@ -86,12 +86,7 @@ app.get('/stream', function(req, res) {
 });
 
 app.post('/test', function(req, res) {
-  console.log(req);
-  console.log('HEADERS-HELLO: '+req.headers.hello);
-  console.log('req body: '+req.body);
-  console.log('req query: '+req.query);
-  console.log('REQ QUERY-TITLE: '+req.query.title);
-  console.log('REQ QUERY-HUMIDITY: '+req.query.humidity)
+  console.log('humidity: '+req.headers.humidity);
 })
 
 // uncomment after placing your favicon in /public
