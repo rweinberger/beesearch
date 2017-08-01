@@ -43,7 +43,7 @@ app.get('/set', function(req,res) {
   var bp = parseInt(req.query.bee);
   var invalid = isNaN(tp) || isNaN(hp) || isNaN(wp) || isNaN(bp)
   if (!invalid) {
-    console.log('valid settings were submitted');
+    // console.log('valid settings were submitted');
     sensors.tPref = tp;
     sensors.hPref = hp;
     sensors.wPref = wp;
@@ -85,8 +85,8 @@ app.get('/stream', function(req, res) {
   connections.push(res)
 });
 
-app.get('/test', function(req, res) {
-  res.send('hellooooo');
+app.post('/test', function(req, res) {
+  console.log(req)
 })
 
 // uncomment after placing your favicon in /public
