@@ -86,7 +86,8 @@ app.get('/stream', function(req, res) {
 });
 
 app.post('/test', function(req, res) {
-  console.log(req)
+  console.log('message from esp8266!');
+  // console.log(req)
 })
 
 // uncomment after placing your favicon in /public
