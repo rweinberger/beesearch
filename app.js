@@ -86,7 +86,7 @@ app.get('/stream', function(req, res) {
 });
 
 app.get('/test', function(req, res) {
-  res.send('heyyyy');
+  res.send('hellooooo');
 })
 
 // uncomment after placing your favicon in /public
