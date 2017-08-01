@@ -18,6 +18,7 @@ app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
 var connections = [];
+var types = ['temp', 'hum', 'wt', 'bee'];
 var sensors = {
   temp: {dps:[], avg: 0},
   hum: {dps:[], avg: 0},
@@ -58,23 +59,30 @@ app.get('/set', function(req,res) {
 });
 
 app.get('/push', function(req, res) {
-  var num = parseFloat(req.query.num);
-  var sensor = req.query.sensor;
-  var b = isNaN(num);
+  var temp = parseFloat(req.query.temp);
+  var hum = parseFloat(req.query.hum);
+  var wt = parseFloat(req.query.wt);
+  // var sensor = req.query.sensor;
+  var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
   if (!b) {
-    sensors[sensor].dps.push(num);
-    sensors.toUpdate = sensor;
-    if(sensors[sensor].dps.length > 10){
-      sensors[sensor].dps.shift();
-    };
-    var sum = sensors[sensor].dps.reduce(add, 0);
-    var avg = sum / sensors[sensor].dps.length;
-    sensors[sensor].avg = avg;
+    sensors.temp.dps.push(temp);
+    sensors.hum.dps.push(hum);
+    sensors.wt.dps.push(wt);
+    sensors.toUpdate = 'sensors';
+    for(var i=0; i<3; i++) {
+      var s = types[i];
+      if(sensors[sensor].dps.length > 10){
+        sensors[sensor].dps.shift();
+      };
+      var sum = sensors[sensor].dps.reduce(add, 0);
+      var avg = sum / sensors[sensor].dps.length;
+      sensors[sensor].avg = avg;
+    }
     for(var i = 0; i < connections.length; i++) {
       connections[i].sseSend(sensors)
     }
   } else {
-    console.log('invalid number entered')
+    console.log('NaN sent from sensor')
   }
   res.sendStatus(200)
 });

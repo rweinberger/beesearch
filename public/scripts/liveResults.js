@@ -32,9 +32,9 @@ if (!!window.EventSource) {
   source.addEventListener('message', function(e) {
     newData = JSON.parse(e.data);
     s = newData.toUpdate;
-    if (s!= 'settings') {
-      updateChart(newData, s);
-    } else {
+    if (s == 'sensors') {
+      updateCharts(newData);
+    } else if (s == 'settings') {
       updatePrefs(newData)
     };
     if (newData.tPref != 0) {
@@ -67,12 +67,12 @@ if (!!window.EventSource) {
 };
 
 
-var updateChart = function (data, s) {
-  if(s != null) {
-    i = sensorTypes.indexOf(s);
+var updateCharts = function (data) {
+  for(var i=0; i<3; i++) {
+    var s = sensorTypes[i];
     var avg = data[s].avg;
     console.log(s+' avg (last 50 dps): '+avg);
-    $('.avg'+i).text(avg+units[i])
+    $('.avg'+i).text(avg+units[i]);
     y = data[s].dps[data[s].dps.length - 1];
     chart = sensorData[i];
     chart.push({
