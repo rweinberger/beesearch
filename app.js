@@ -86,8 +86,9 @@ app.get('/stream', function(req, res) {
 });
 
 app.post('/test', function(req, res) {
-  console.log('message from esp8266!');
-  console.log('HUMIDITY: '+req.headers.humidity)
+  console.log('HEADERS-HELLO: '+req.headers.hello);
+  console.log('REQ BODY-TITLE: '+req.body.title);
+  console.log('REQ BODY-HUMIDITY: '+req.body.humidity);
   // console.log(req)
 })
 
