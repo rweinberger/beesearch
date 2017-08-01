@@ -14,6 +14,7 @@ $("#push").on("click", function() {
   var h = $('#humInput').val();
   var w = $('#wtInput').val();
   // console.log(n, s);
+  console.log(t,h,w);
   push(t,h,w);
   $('.num').val('')
 })
