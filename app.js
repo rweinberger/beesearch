@@ -37,10 +37,10 @@ function add(a, b) {
 }
 
 app.get('/set', function(req,res) {
-  var tp = parseInt(req.query.temp);
-  var hp = parseInt(req.query.hum);
-  var wp = parseInt(req.query.wt);
-  var bp = parseInt(req.query.bee);
+  var tp = parseFloat(req.query.temp);
+  var hp = parseFloat(req.query.hum);
+  var wp = parseFloat(req.query.wt);
+  var bp = parseFloat(req.query.bee);
   var invalid = isNaN(tp) || isNaN(hp) || isNaN(wp) || isNaN(bp)
   if (!invalid) {
     // console.log('valid settings were submitted');
@@ -58,11 +58,11 @@ app.get('/set', function(req,res) {
 });
 
 app.get('/push', function(req, res) {
-  var num = parseInt(req.query.num);
+  var num = parseFloat(req.query.num);
   var sensor = req.query.sensor;
   var b = isNaN(num);
   if (!b) {
-    sensors[sensor].dps.push(parseInt(num));
+    sensors[sensor].dps.push(num);
     sensors.toUpdate = sensor;
     if(sensors[sensor].dps.length > 10){
       sensors[sensor].dps.shift();
