@@ -222,7 +222,12 @@ hr{
   background-color: black
 }
 
+#healthChart{
+  width: 400px;
+  margin:auto;
+}
 .teardropMain{
+  z-index: 5;
   position: relative;
   margin: 0px;
   display: inline-block;

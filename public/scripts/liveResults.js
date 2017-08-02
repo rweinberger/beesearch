@@ -97,7 +97,7 @@ var updatePrefs = function(data) {
 var updateIndicators = function(t, h, w, b) {
   var toChange = [t,h,w,b];
   for(var i=0; i<3; i++) {
-    newSize = toChange[i]*200;
+    newSize = toChange[i]*194;
     $("#indic"+i).animate({
       width: newSize+"px",
       height: newSize+"px"
