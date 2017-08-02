@@ -1,6 +1,13 @@
 $(document).ready(function(){
   var fadeTime = 200;
   var hexes = ['temperature', 'humidity', 'weight', 'bee counter', 'settings', 'about'];
+  $('.teardropMain').hover(function() {
+    id = this.id.substring(4);
+    $('#indicText'+id).fadeIn(fadeTime);
+  }, function() {
+    id = this.id.substring(4);
+    $('#indicText'+id).fadeOut(fadeTime);
+  });
   $('.hexagon').hover(function() {
     id = this.id.substring(3);
     text = hexes[parseInt(id)];

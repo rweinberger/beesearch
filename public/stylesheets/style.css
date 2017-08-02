@@ -226,7 +226,11 @@ hr{
   width: 400px;
   margin:auto;
 }
+
 .teardropMain{
+  -webkit-box-shadow: inset 0px 0px 40px 1px rgba(0,0,0,.8);
+  -moz-box-shadow: inset 0px 0px 40px 1px rgba(0,0,0,.8);
+  box-shadow: inset 0px 0px 40px 1px rgba(0,0,0,.8);
   z-index: 5;
   position: relative;
   margin: 0px;
@@ -265,6 +269,23 @@ hr{
   border-top-right-radius: 100px;
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
+}
+
+.indicText{
+  position: absolute;
+  width:120px;
+  left:0;
+  right:0;
+  margin:auto;
+  display:none;
+}
+
+.textTop{
+  margin-top: 70px;
+}
+
+.textBottom{
+  margin-top: 50px;
 }
 
 
