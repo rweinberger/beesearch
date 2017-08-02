@@ -42,10 +42,11 @@ if (!!window.EventSource) {
         hHum = 1 - (Math.abs(newData.hum.avg - newData.hPref) / newData.hPref),
         hWt = 1 - (Math.abs(newData.wt.avg - newData.wPref) / newData.wPref),
         hBee = 1 - (Math.abs(newData.bee.avg - newData.bPref) / newData.bPref)
-      var hiveHealth = ((hTemp + hHum + hWt + hBee) / 4) * 100;
-      var colorIndex = Math.round(hiveHealth/25);
-      $("#indicator").text(hiveHealth+' '+colorIndex);
-      $('#healthIndicator').css('background-color', indicateColors[colorIndex])
+      updateIndicators(hTemp, hHum, hWt, hBee);
+      // var hiveHealth = ((hTemp + hHum + hWt + hBee) / 4) * 100;
+      // var colorIndex = Math.round(hiveHealth/25);
+      // $("#indicator").text(hiveHealth+' '+colorIndex);
+      // $('#healthIndicator').css('background-color', indicateColors[colorIndex])
     };
   }, false);
 
@@ -91,4 +92,15 @@ var updatePrefs = function(data) {
   $('.humPref').text(data.hPref+' %');
   $('.wtPref').text(data.wPref+' kg');
   $('.beePref').text(data.bPref);
+}
+
+var updateIndicators = function(t, h, w, b) {
+  var toChange = [t,h,w,b];
+  for(var i=0; i<3; i++) {
+    newSize = toChange[i]*200;
+    $("#indic"+i).animate({
+      width: newSize+"px",
+      height: newSize+"px"
+    }, 200);
+  }
 }

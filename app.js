@@ -44,7 +44,6 @@ app.get('/set', function(req,res) {
   var bp = parseFloat(req.query.bee);
   var invalid = isNaN(tp) || isNaN(hp) || isNaN(wp) || isNaN(bp)
   if (!invalid) {
-    // console.log('valid settings were submitted');
     sensors.tPref = tp;
     sensors.hPref = hp;
     sensors.wPref = wp;

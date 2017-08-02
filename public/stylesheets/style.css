@@ -221,3 +221,46 @@ hr{
   height: 100px;
   background-color: black
 }
+
+.teardropMain{
+  position: relative;
+  margin: 0px;
+  display: inline-block;
+  border: solid 3px #000;
+  width: 200px;
+  height: 200px;
+}
+
+.teardropDynamic{
+  position: absolute;
+  background-color: #f9c700;
+  width: 100px;
+  height: 100px;
+}
+
+.teardropTopLeft{
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.teardropTopRight{
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.teardropBottomLeft{
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px
+}
+
+.teardropBottomRight{
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+
+
