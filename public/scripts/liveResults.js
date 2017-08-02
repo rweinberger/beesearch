@@ -43,10 +43,6 @@ if (!!window.EventSource) {
         hWt = 1 - (Math.abs(newData.wt.avg - newData.wPref) / newData.wPref),
         hBee = 1 - (Math.abs(newData.bee.avg - newData.bPref) / newData.bPref)
       updateIndicators(hTemp, hHum, hWt, hBee);
-      // var hiveHealth = ((hTemp + hHum + hWt + hBee) / 4) * 100;
-      // var colorIndex = Math.round(hiveHealth/25);
-      // $("#indicator").text(hiveHealth+' '+colorIndex);
-      // $('#healthIndicator').css('background-color', indicateColors[colorIndex])
     };
   }, false);
 
