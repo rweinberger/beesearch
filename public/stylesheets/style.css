@@ -240,7 +240,6 @@ hr{
 }
 
 .teardropMain:hover {
-  cursor:pointer;
   -webkit-transition: box-shadow .2s; /* Safari */
   transition: box-shadow .2s;
   -webkit-box-shadow: 0px 0px 30px 1px rgba(0,0,0,.8);
