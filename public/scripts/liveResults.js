@@ -98,6 +98,7 @@ var updateIndicators = function(t, h, w, b) {
   var toChange = [t,h,w,b];
   for(var i=0; i<3; i++) {
     newSize = toChange[i]*194;
+    console.log("resizing "+sensorTypes[i]+" to "+newSize);
     $("#indic"+i).animate({
       width: newSize+"px",
       height: newSize+"px"
