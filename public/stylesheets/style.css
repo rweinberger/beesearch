@@ -298,5 +298,11 @@ hr{
   margin-top: 50px;
 }
 
+#connectivity{
+  position: absolute;
+  left:0;
+  bottom:0;
+  padding: 10px;
+}
 
 

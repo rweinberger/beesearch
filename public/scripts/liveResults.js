@@ -47,16 +47,16 @@ if (!!window.EventSource) {
   }, false);
 
   source.addEventListener('open', function(e) {
-    $(".state").text("(Connected)")
+    $(".state").text("Connected")
   }, false);
 
   source.addEventListener('error', function(e) {
     console.log(e);
     if (e.target.readyState == EventSource.CLOSED) {
-      $(".state").text("(Disconnected)")
+      $(".state").text("Disconnected")
     }
     else if (e.target.readyState == EventSource.CONNECTING) {
-      $(".state").text("(Connecting...)")
+      $(".state").text("Connecting...")
     }
   }, false)
 } else {

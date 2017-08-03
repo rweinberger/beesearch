@@ -58,6 +58,7 @@ app.get('/set', function(req,res) {
 });
 
 app.get('/push', function(req, res) {
+  console.log("msg from lora shit");
   var temp = parseFloat(req.query.temp);
   var hum = parseFloat(req.query.hum);
   var wt = parseFloat(req.query.wt);
