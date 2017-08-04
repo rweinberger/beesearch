@@ -68,8 +68,8 @@ app.get('/push', function(req, res) {
     sensors.hum.dps.push(parseFloat(Math.random()*(32-30)+30));
     // sensors.hum.dps.push(hum);
     //hhhh
-    // sensors.wt.dps.push(Math.random*(10-5)+5)
-    sensors.wt.dps.push(wt);
+    sensors.wt.dps.push(0.5);
+    // sensors.wt.dps.push(wt);
     sensors.toUpdate = 'sensors';
     for (var i=0; i<3; i++) {
       var s = types[i];
