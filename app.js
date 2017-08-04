@@ -65,7 +65,7 @@ app.get('/push', function(req, res) {
   var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
   if (!b) {
     sensors.temp.dps.push(temp);
-    sensors.hum.dps.push(Math.random*(32-30)+30)
+    sensors.hum.dps.push(parseFloat(Math.random*(32-30)+30));
     // sensors.hum.dps.push(hum);
     //hhhh
     // sensors.wt.dps.push(Math.random*(10-5)+5)
