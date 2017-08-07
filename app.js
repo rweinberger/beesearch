@@ -19,6 +19,8 @@ app.set('view engine', 'hbs');
 
 var connections = [];
 var types = ['temp', 'hum', 'wt', 'bee'];
+
+// sensor data to push to client in real time
 var sensors = {
   temp: {dps:[], avg: 0},
   hum: {dps:[], avg: 0},
@@ -37,6 +39,7 @@ function add(a, b) {
   return a + b;
 }
 
+// update & save user-submitted settings 
 app.get('/set', function(req,res) {
   var tp = parseFloat(req.query.temp);
   var hp = parseFloat(req.query.hum);
@@ -57,6 +60,7 @@ app.get('/set', function(req,res) {
   }
 });
 
+// on receiving data through this route, update sensor averages and send data to client
 app.get('/push', function(req, res) {
   var temp = parseFloat(req.query.temp);
   var hum = parseFloat(req.query.hum);
@@ -93,9 +97,6 @@ app.get('/stream', function(req, res) {
   connections.push(res)
 });
 
-app.post('/test', function(req, res) {
-  console.log('humidity: '+req.headers.humidity);
-})
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

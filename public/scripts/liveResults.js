@@ -21,6 +21,7 @@ for(var i=0; i<4; i++){
       lineColor: '#f9c700',
       color:'#f9c700',
       markerSize: 10,
+      xValueType: "dateTime",
       dataPoints: sensorData[i]
     }]
   });
@@ -72,7 +73,7 @@ var updateCharts = function (data) {
     y = data[s].dps[data[s].dps.length - 1];
     chart = sensorData[i];
     chart.push({
-      x: xVals[i],
+      x: Date.now(),
       y: y
     });
     if (chart.length > 20) {
