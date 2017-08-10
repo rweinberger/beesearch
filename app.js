@@ -64,14 +64,14 @@ app.get('/set', function(req,res) {
 app.get('/push', function(req, res) {
   var temp = parseFloat(req.query.temp);
   var hum = parseFloat(req.query.hum);
-  // var wt = parseFloat(req.query.wt);
-  console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + 'FIX UR SENSOR');
-  var b = isNaN(temp) || isNaN(hum); // || isNaN(wt);
+  var wt = parseFloat(req.query.wt);
+  console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + wt);
+  var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
   if (!b) {
     sensors.temp.dps.push(temp);
     sensors.hum.dps.push(hum);
-    sensors.wt.dps.push(0.5);
-    // sensors.wt.dps.push(wt);
+    // sensors.wt.dps.push(0.5);
+    sensors.wt.dps.push(wt);
     sensors.toUpdate = 'sensors';
     for (var i=0; i<3; i++) {
       var s = types[i];
