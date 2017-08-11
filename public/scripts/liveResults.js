@@ -66,7 +66,7 @@ if (!!window.EventSource) {
 
 
 var updateCharts = function (data) {
-  for(var i=0; i<3; i++) {
+  for(var i=0; i<4; i++) {
     var s = sensorTypes[i];
     var avg = data[s].avg;
     $('.avg'+i).text(avg+units[i]);
@@ -93,7 +93,7 @@ var updatePrefs = function(data) {
 
 var updateIndicators = function(t, h, w, b) {
   var toChange = [t,h,w,b];
-  for(var i=0; i<3; i++) {
+  for(var i=0; i<4; i++) {
     newSize = toChange[i]*194;
     console.log("resizing "+sensorTypes[i]+" to "+newSize);
     $("#indic"+i).animate({

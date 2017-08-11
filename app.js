@@ -65,28 +65,27 @@ app.get('/push', function(req, res) {
   var temp = parseFloat(req.query.temp);
   var hum = parseFloat(req.query.hum);
   var wt = parseFloat(req.query.wt);
-  console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + wt);
-  var b = isNaN(temp) || isNaN(hum) || isNaN(wt);
-  if (!b) {
-    sensors.temp.dps.push(temp);
-    sensors.hum.dps.push(hum);
-    // sensors.wt.dps.push(0.5);
-    sensors.wt.dps.push(wt);
-    sensors.toUpdate = 'sensors';
-    for (var i=0; i<3; i++) {
-      var s = types[i];
-      if(sensors[s].dps.length > 10){
-        sensors[s].dps.shift();
-      };
-      var sum = sensors[s].dps.reduce(add, 0);
-      var avg = sum / sensors[s].dps.length;
-      sensors[s].avg = avg;
-    };
-    for(var i = 0; i < connections.length; i++) {
-      connections[i].sseSend(sensors)
+  var bee = parseFloat(req.query.bee);
+  console.log('incoming data: temp '+ temp + ', hum ' + hum + ', wt ' + wt + ', bee '+ bee);
+  var incomingData = [temp, hum, wt, bee];
+  console.log(incomingData);
+  for (var i=0; i<4; i++) {
+    if (!isNaN(incomingData[i])) {
+      sensors[types[i]].dps.push(incomingData[i])
     }
-  } else {
-    console.log('NaN sent from sensor')
+  }
+  sensors.toUpdate = 'sensors';
+  for (var i=0; i<4; i++) {
+    var s = types[i];
+    if(sensors[s].dps.length > 10){
+      sensors[s].dps.shift();
+    };
+    var sum = sensors[s].dps.reduce(add, 0);
+    var avg = sum / sensors[s].dps.length;
+    sensors[s].avg = avg;
+  };
+  for(var i = 0; i < connections.length; i++) {
+    connections[i].sseSend(sensors)
   }
   res.sendStatus(200)
 });

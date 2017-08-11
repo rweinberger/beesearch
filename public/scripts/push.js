@@ -1,5 +1,5 @@
-function push(temp, hum, wt) {
-  $.get("/push?temp=" + temp + "&hum=" + hum +"&wt=" + wt, function() {
+function push(temp, hum, wt, bee) {
+  $.get("/push?temp=" + temp + "&hum=" + hum +"&wt=" + wt + "&bee=" + bee, function() {
   })
 }
 
@@ -13,8 +13,9 @@ $("#push").on("click", function() {
   var t = $('#tempInput').val();
   var h = $('#humInput').val();
   var w = $('#wtInput').val();
+  var b = $('#beeInput').val();
   // console.log(n, s);
-  console.log(t,h,w);
-  push(t,h,w);
+  console.log(t,h,w,b);
+  push(t,h,w,b);
   $('.num').val('')
 })
